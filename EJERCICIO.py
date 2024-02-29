@@ -58,7 +58,7 @@ class Sistema:
                     print(f"El servicio al cual ingresó el paciente >>> {paciente.getServicio()}")
                     break
             else:
-                print("¡¡¡DOCUMENTO NO ENCONTRADO EN LA BASE DE DATOS!!!") 
+                print("¡¡¡DOCUMENTO NO ENCONTRADO EN LA BASE DE DATOS, intente de nuevooo!!!") 
                 
 
     def verNumeroPacientes(self):
