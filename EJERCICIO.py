@@ -32,54 +32,69 @@ class Paciente:
 class Sistema:
     def __init__(self):
         self.__listadoPacientes=[]
-        self.__numeroPacientes=len(self.__listadoPacientes)
         
-    def ingresarPacientes(self):
-        nombre=input("Ingrese el nombre del paciente >>> ")
-        cedula=input("Ingrese la cédula del paciente >>> ")
-        genero=input("Ingrese el género del paciente >>> ")
-        servicio=input("Ingrese el servicio al cual ingresó el paciente >>> ")
-        a=Paciente()
-        a.setNombre(nombre)
-        a.setCedula(cedula)
-        a.setGenero(genero)
-        a.setServicio(servicio)
-        self.__listadoPacientes.append(a)
-        self.__numeroPacientes=len(self.__listadoPacientes)  
-       
-        
-    def verDatosPacientes(self):
-            ide=input( "Ingrese la cédula del paciente buscar >>> ")
-            for paciente in self.__listadoPacientes: 
-                if ide == paciente.getCedula(): 
-                    print(f"El nombre del paciente es >>> {paciente.getNombre()}")
-                    print(f"La cédula del paciente es >>> {paciente.getCedula()}")
-                    print(f"El género del paciente es >>> {paciente.getGenero()}")
-                    print(f"El servicio al cual ingresó el paciente >>> {paciente.getServicio()}")
-                    break
-            else:
-                print("¡¡¡DOCUMENTO NO ENCONTRADO EN LA BASE DE DATOS!!!") 
-                
+    def ingresarPacientes(self,paciente):
+        self.__listadoPacientes.append(paciente)
+        return True
+    
+    def verificarPacientes(self,cedula):
+        for p in self.__listadoPacientes:
+            if cedula==p.getCedula():
+                return True
+        return False 
+    
+    def verDatosPacientes(self,cedula):
+            if self.verificarPacientes(cedula)==False:
+                return None 
+            for p in self.__listadoPacientes:
+                if cedula == p.getCedula():
+                    return p           
 
     def verNumeroPacientes(self):
-        return (f"Hasta el momento hay {self.__numeroPacientes} pacientes registrados") 
+        return (f"Hasta el momento hay {len(self.__listadoPacientes)} pacientes registrados") 
     
     def salir(self):
         return (">>> Usted ha salido exitosamente del sistema <<<")
     
-mi_sistema=Sistema()
+def main(): 
+    mi_sistema=Sistema()
+    while True:
+        menu=input("Marque:\n1.Agregar paciente \n2.Ver datos de paciente \n3.Ver número de pacientes \n4.Salir ")
+        if menu=="1":
+            cedula=input("Ingrese la cédula del paciente >>> ")
+            if mi_sistema.verificarPacientes(cedula)== False:
+                nombre=input("Ingrese el nombre del paciente >>> ")
+                genero=input("Ingrese el género del paciente >>>")
+                servicio=input("Ingrese el servicio al cual ingresó el paciente >>>")
+                p=Paciente()
+                p.setCedula(cedula)
+                p.setNombre(nombre)
+                p.setGenero(genero)
+                p.setServicio(servicio)
+                mi_sistema.ingresarPacientes(p)
+            else:
+                 print("¡¡¡YA EXISTE UN PACIENTE CON ESE NÚMERO DE DOCUMENTO!!!")
 
-while True:
-    menu=input("Marque:\n1.Agregar paciente \n2.Ver datos de paciente \n3.Ver número de pacientes \n4.Salir ")
-    if menu=="1":
-        mi_sistema.ingresarPacientes()
-    elif menu=="2":
-        mi_sistema.verDatosPacientes()
-    elif menu=="3":
-        print(mi_sistema.verNumeroPacientes())
-    elif menu=="4":
-        print(mi_sistema.salir())
-        break
-    else:
-        print("INGRESÓ UNA OPCIÓN INCORRETA, INTENTE NUEVAMENTE")
+        elif menu=="2":
+           cedula=input("Ingrese la cédula del paciente >>> ")
+           p= mi_sistema.verDatosPacientes(cedula)
+           if p != None:
+               print(f"La cédula del paciente es >>> {p.getCedula()}")
+               print(f"El nombre del paciente es >>>{p.getNombre()}")
+               print(f"El género del paciente es >>> {p.getGenero()}")
+               print(f"El servicio al cual ingresó el paciente es >>> {p.getServicio()}")
+           else:
+               print("¡¡¡NO EXISTE UN PACIENTE CON ESE NÚMERO DE DOCUMENTO!!!")
+
+        elif menu=="3":
+            print(mi_sistema.verNumeroPacientes())
+
+        elif menu=="4":
+            print(mi_sistema.salir())
+            break
+        else:
+            print("INGRESÓ UNA OPCIÓN INCORRETA, INTENTE NUEVAMENTE")
+
+if __name__ == "__main__": 
+    main()
 
