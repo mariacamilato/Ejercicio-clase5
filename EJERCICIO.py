@@ -62,10 +62,10 @@ class Sistema:
                 
 
     def verNumeroPacientes(self):
-        print (f"Hasta el momento hay {self.__numeroPacientes} pacientes registrados") 
+        return (f"Hasta el momento hay {self.__numeroPacientes} pacientes registrados") 
     
     def salir(self):
-        print (">>> Usted ha salido exitosamente del sistema <<<")
+        return (">>> Usted ha salido exitosamente del sistema <<<")
     
 mi_sistema=Sistema()
 
@@ -76,9 +76,9 @@ while True:
     elif menu=="2":
         mi_sistema.verDatosPacientes()
     elif menu=="3":
-        mi_sistema.verNumeroPacientes()
+        print(mi_sistema.verNumeroPacientes())
     elif menu=="4":
-        mi_sistema.salir()
+        print(mi_sistema.salir())
         break
     else:
         print("INGRESÓ UNA OPCIÓN INCORRETA, INTENTE NUEVAMENTE")
