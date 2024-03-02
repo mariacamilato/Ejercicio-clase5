@@ -127,14 +127,13 @@ def main():
             if servicio.verificarExiste(masc,historia) == False:
             
                 nombre=input("Ingrese el nombre de la mascota >>> ")
-                historia=int(input("Ingrese NUEVAMENTE el número de historia clínica de la mascota >>> "))
+                historia=input("Ingrese NUEVAMENTE el número de historia clínica de la mascota >>> ")
                 historia=verifica(historia)
                 tipo=input("¿Qué tipo de mascota es? >>> ")
                 peso=input("Ingrese el peso de la mascota en lb >>> ")
                 peso=verifica(peso)
                 fecha=input("Ingrese la fecha de ingreso de la mascota >>> ")
                 cantidadm=int(input("Ingrese la cantidad de medicamentos que tiene la mascota >>> "))
-                cantidadm==verifica(cantidadm)
                 listaMed=[]
 
                 for i in range (0,cantidadm):
@@ -157,7 +156,7 @@ def main():
                 print(" ¡¡¡Ya existe una mascota con ese número de historia !!! ")
         
         elif menu =="2":
-            historia=int(input("Ingrese el número de historia de la mascota >>> "))
+            historia=input("Ingrese el número de historia de la mascota >>> ")
             historia=verifica(historia)
             fecha= servicio.verFechaIngreso(masc,historia) 
             if fecha!=None:
@@ -170,7 +169,7 @@ def main():
             print(f"El número de mascotas ingresados hasta el momento es {numero}")
         
         elif menu =="4":
-            historia=int(input("Ingrese el número de historia de la mascota >>> "))
+            historia=input("Ingrese el número de historia de la mascota >>> ")
             historia=verifica(historia)
             medicamento= servicio.verMedicamento(masc,historia)
             if medicamento!=None:
@@ -182,7 +181,8 @@ def main():
                 print("¡¡¡ No hay ninguna mascota que coincida con el número de historia !!! ")
         
         elif menu =="5":
-            historia=int(input("Ingrese el número de historia de la mascota >>> "))
+            historia=input("Ingrese el número de historia de la mascota >>> ")
+            historia=verifica(historia)
             eliminar=servicio.eliminarMascota(masc,historia)
             if eliminar == True:
                 print("¡¡¡Mascota eliminada con éxito!!!")
