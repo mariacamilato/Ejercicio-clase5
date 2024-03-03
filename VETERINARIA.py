@@ -5,7 +5,7 @@ class Mascota:
         self.__tipo=""
         self.__peso=""
         self.__fechaIngreso=""
-        self.__listaMedicamentos={}
+        self.__listaMedicamentos=[]
 
     def getNombre(self):
         return self.__nombre
@@ -62,7 +62,9 @@ class Medicamento:
 
 class Sistema:
     def __init__(self):
-        self.__listadoMascotas=[]
+        self.__caninos=[]
+        self.__felinos=[]
+        self.__listadoMascotas={"caninos":self.__caninos, "felinos": self.__felinos}
     
     def ingresarMascotas(self,mascota):
         self.__listadoMascotas.append(mascota)
