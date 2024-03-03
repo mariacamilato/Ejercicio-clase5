@@ -127,8 +127,6 @@ def main():
             if servicio.verificarExiste(masc,historia) == False:
             
                 nombre=input("Ingrese el nombre de la mascota >>> ")
-                historia=input("Ingrese NUEVAMENTE el número de historia clínica de la mascota >>> ")
-                historia=verifica(historia)
                 tipo=input("¿Qué tipo de mascota es? >>> ")
                 peso=input("Ingrese el peso de la mascota en lb >>> ")
                 peso=verifica(peso)
