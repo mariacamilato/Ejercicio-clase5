@@ -66,17 +66,21 @@ class Sistema:
         self.__felinos=[]
         self.__listadoMascotas={"caninos":self.__caninos, "felinos": self.__felinos}
     
-    def ingresarMascotas(self,mascota):
-        self.__listadoMascotas.append(mascota)
+    def ingresarCaninos(self,masc):
+        self.__caninos.append(masc)
     
+    def ingresarFelinos(self,masc):
+        self.__felinos.append(masc)
+
     def verFechaIngreso(self,masc,historia):
-        for i in self.__listadoMascotas:
-            if historia == masc.getHistoria():
-                return masc.getFechaIngreso()
+        for key in self.__listadoMascotas:
+            for valor in self.__listadoMascotas[key]:
+                    if historia == masc.getHistoria():
+                        return masc.getFechaIngreso()
         return None
 
     def verNumeroMascotas(self):
-        return len(self.__listadoMascotas)
+        return len(self.__caninos) + len(self.__felinos)
     
     def verMedicamento(self,masc,historia):
         for i in self.__listadoMascotas:
@@ -92,9 +96,10 @@ class Sistema:
         return False 
     
     def verificarExiste(self,masc,historia):
-        for i in self.__listadoMascotas:
-            if historia == masc.getHistoria():
-                return True 
+        for key in self.__listadoMascotas:
+            for valor in self.__listadoMascotas[key]:
+                if historia == masc.getHistoria():
+                    return True 
         return False 
     
     def salir(self):
@@ -129,7 +134,9 @@ def main():
             if servicio.verificarExiste(masc,historia) == False:
             
                 nombre=input("Ingrese el nombre de la mascota >>> ")
-                tipo=input("¿Qué tipo de mascota es? >>> ")
+                tipo=input("""¿Qué tipo de mascota es? Marque
+                           1.PARA CANINOS
+                           2.PARA FELINOS >>> """)
                 peso=input("Ingrese el peso de la mascota en lb >>> ")
                 peso=verifica(peso)
                 fecha=input("Ingrese la fecha de ingreso de la mascota >>> ")
@@ -151,7 +158,10 @@ def main():
                 masc.setTipo(tipo)
                 masc.setFechaIngreso(fecha)
                 masc.setListaMedicamentos(listaMed)
-                servicio.ingresarMascotas(masc)
+                if tipo=="1":
+                    servicio.ingresarCaninos(masc)
+                else:
+                    servicio.ingresarFelinos(masc)
             else:
                 print(" ¡¡¡Ya existe una mascota con ese número de historia !!! ")
         
