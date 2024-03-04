@@ -128,7 +128,7 @@ class Sistema:
     
     def fecha(self):
         while True:
-            fecha=input("Ingrese la fecha en formato DD/MM/AA >>>")
+            fecha=input("Ingrese la fecha en formato (el año SOLO dos números) DD/MM/AA >>>")
             try:
                 fe=datetime.strptime(fecha, "%d/%m/%y")
                 return fe
